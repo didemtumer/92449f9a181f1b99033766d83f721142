@@ -1,3 +1,7 @@
-.helloTitle{
-    color: red;
-}
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "layout/footer";
+@import "layout/header";
+
+@import "components/buttons";

@@ -1,11 +1,17 @@
 <template>
-  <v-container>
-    <v-toolbar flat color="primary">
-      <v-toolbar-title>Otel</v-toolbar-title>
+  <v-container class="header">
+    <v-toolbar flat color="indigo">
+      <v-toolbar-title>
+        <span class="header__title">Otel</span>
+        <span class="header__subtitle">Rezervasyon Sistemi</span>
+      </v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn height="20">
+      <v-toolbar-items class="btn-container">
+        <v-btn class="btn-booking">
+          <v-icon left color="indigo">
+            mdi-pencil
+          </v-icon>
           Yeni Rezervasyon Yap
         </v-btn>
 
