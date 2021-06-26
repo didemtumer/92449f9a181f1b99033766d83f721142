@@ -38,6 +38,7 @@
             <v-date-picker
               v-model="checkIn"
               @input="menu = false"
+              :min="new Date().toISOString().substr(0, 10)"
             ></v-date-picker>
           </v-menu>
         </v-col>
@@ -64,6 +65,7 @@
             <v-date-picker
               v-model="checkOut"
               @input="menu2 = false"
+              :min="checkIn"
             ></v-date-picker>
           </v-menu>
         </v-col>
@@ -71,7 +73,7 @@
           <v-select
             label="Yetişkin Sayısı"
             v-model="adultCount"
-            :items="adults"
+            :items="dynamicAdultArray"
             dense
           >
           </v-select>
@@ -81,12 +83,18 @@
             label="Çocuk Sayısı"
             v-model="childCount"
             :items="children"
+            :disabled="hotelItem ? disabledChildStatusInput : true"
             dense
           >
           </v-select>
+          <p v-if="hotelItem ? !childStatus : false">
+            Çocuk Ziyaretçi Kabul Edilmiyor!
+          </p>
         </v-col>
       </v-row>
     </v-container>
+    <!-- {{ hotelItem ? selectedHotelDetail : "-" }} -->
+    {{ hotelItem ? maxAdultSize : "-" }}
   </v-layout>
 </template>
 <script>
@@ -101,7 +109,7 @@ export default {
       checkOut: new Date().toISOString().substr(0, 10),
       childCount: null,
       adultCount: null,
-      adults: [1, 2, 3, 4, 5],
+      adults: [],
       children: [1, 2, 3, 4, 5],
     };
   },
@@ -109,6 +117,45 @@ export default {
     ...mapGetters(["getHotelList", "getHotelDetails"]),
     hotelName() {
       return this.getHotelList.map((item) => item.hotel_name);
+    },
+    selectedHotelId() {
+      let compareHotel = this.getHotelList.find((item) => {
+        return item.hotel_name === this.hotelItem ? item.id : null;
+      });
+      let compareHotelId = compareHotel.id;
+      console.log("selectedHotel", compareHotelId);
+      return compareHotelId;
+    },
+    selectedHotelDetail() {
+      let selectedHotelDetails = this.getHotelDetails.filter(
+        (item) => this.selectedHotelId === item.id
+      );
+      console.log(selectedHotelDetails);
+      return selectedHotelDetails;
+    },
+    childStatus() {
+      console.log(this.selectedHotelDetail[0].child_status);
+      return this.selectedHotelDetail[0].child_status;
+    },
+    maxAdultSize() {
+      return this.selectedHotelDetail[0].max_adult_size;
+    },
+
+    disabledChildStatusInput() {
+      if (this.childStatus) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    dynamicAdultArray() {
+      let adultSize = [];
+      if (this.hotelItem) {
+        for (let i = 0; i < this.maxAdultSize; i++) {
+          adultSize.push(i);
+        }
+      }
+      return adultSize;
     },
   },
   methods: {
