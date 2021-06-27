@@ -49,8 +49,9 @@
                   {{ dateDifference }} gün
                 </v-card-text>
                 <v-card-text class="card-info">
-                  {{ roomPrice(roomtype.id) }}
-                  {{ roomtype.price * dateDifference * getAdultNumber }}TL
+                  {{
+                    roomPrice(roomtype.id) * dateDifference * getAdultNumber
+                  }}TL
                 </v-card-text>
                 <v-spacer></v-spacer>
                 <v-card-subtitle> {{ getAdultNumber }} Adults </v-card-subtitle>
@@ -98,7 +99,6 @@
           </label>
         </v-col>
       </v-row>
-      {{ getSelectedHotelDetails }}
     </v-container>
   </v-layout>
 </template>
@@ -133,19 +133,18 @@ export default {
       let date2 = new Date(this.getCheckOut);
       let diffTime = Math.abs(date2 - date1);
       let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-      console.log(diffTime + " milliseconds");
-      console.log(diffDays + " days");
       return diffDays;
     },
   },
   methods: {
     roomPrice(id) {
       console.log("id", id);
-      //   let hotelprice = this.roomTypes.find((item) => {
-      //     item.id === id ? item.price : null;
-      //   });
-      //   console.log("hotelprice", hotelprice);
-      //   return hotelprice;
+      let roomInfo = this.roomTypes.filter((item) =>
+        item.id === id ? item.price : null
+      );
+      console.log("roomInfo", roomInfo);
+      let hotelprice = roomInfo[0].price;
+      return hotelprice;
     },
   },
 };
