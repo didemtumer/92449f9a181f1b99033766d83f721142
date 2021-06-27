@@ -7,16 +7,42 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     hotelList: [],
-    hotelDetails: []
+    hotelDetails: [],
+    selectedHotelDetails: [],
+    hotelName: "",
+    checkIn: new Date().toISOString().substr(0, 10),
+    checkOut: new Date().toISOString().substr(0, 10),
+    adult_number: "",
+    child_number: "0"
   },
   mutations: {
     setHotelList(state, payload) {
       state.hotelList = payload;
+      console.log(payload);
     },
     setHotelDetails(state, payload) {
       state.hotelDetails = payload;
-      console.log(payload);
+      console.log("Otel Ayrıntıları", payload);
     },
+    setHotelName(state, payload) {
+      state.hotelName = payload;
+    },
+    setCheckIn(state, payload) {
+      state.checkIn = payload;
+    },
+    setCheckOut(state, payload) {
+      state.checkOut = payload;
+    },
+    setAdultNumber(state, payload) {
+      state.adult_number = payload;
+    },
+    setChildNumber(state, payload) {
+      state.child_number = payload;
+    },
+    setSelectHotelDetails(state, payload) {
+      state.selectedHotelDetails = payload;
+      console.log("vuex seçilen obje", payload);
+    }
   },
   actions: {
     loadHotelList({ commit }) {
@@ -46,7 +72,26 @@ export default new Vuex.Store({
     },
     getHotelDetails(state) {
       return state.hotelDetails;
+    },
+    getHotelName(state) {
+      return state.hotelName;
+    },
+    getCheckIn(state) {
+      return state.checkIn;
+    },
+    getCheckOut(state) {
+      return state.checkOut;
+    },
+    getAdultNumber(state) {
+      return state.adult_number;
+    },
+    getChildNumber(state) {
+      return state.child_number;
+    },
+    getSelectedHotelDetails(state) {
+      return state.selectedHotelDetails;
     }
+
   }
 
 })

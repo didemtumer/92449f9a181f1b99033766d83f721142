@@ -2,7 +2,7 @@
   <v-layout align-center justify-center class="white">
     <v-container>
       <v-row>
-        <v-col cols="12" style="background-color: #e9ecef">
+        <v-col cols="12">
           <v-select
             v-model="hotelItem"
             dense
@@ -33,6 +33,7 @@
                 readonly
                 v-bind="attrs"
                 v-on="on"
+                :rules="[(v) => !!v || 'Please choose your check-oin date']"
               ></v-text-field>
             </template>
             <v-date-picker
@@ -60,6 +61,7 @@
                 readonly
                 v-bind="attrs"
                 v-on="on"
+                :rules="[(v) => !!v || 'Please choose your check-out date']"
               ></v-text-field>
             </template>
             <v-date-picker
@@ -74,6 +76,7 @@
             label="Yetişkin Sayısı"
             v-model="adultCount"
             :items="dynamicAdultArray"
+            :rules="[(v) => !!v || 'Please select adult size']"
             dense
           >
           </v-select>
@@ -93,8 +96,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <!-- {{ hotelItem ? selectedHotelDetail : "-" }} -->
-    {{ hotelItem ? maxAdultSize : "-" }}
   </v-layout>
 </template>
 <script>
@@ -104,11 +105,6 @@ export default {
     return {
       menu: false,
       menu2: false,
-      hotelItem: "",
-      checkIn: new Date().toISOString().substr(0, 10),
-      checkOut: new Date().toISOString().substr(0, 10),
-      childCount: null,
-      adultCount: null,
       adults: [],
       children: [1, 2, 3, 4, 5],
     };
@@ -131,6 +127,7 @@ export default {
         (item) => this.selectedHotelId === item.id
       );
       console.log(selectedHotelDetails);
+      this.$store.commit("setSelectHotelDetails", selectedHotelDetails);
       return selectedHotelDetails;
     },
     childStatus() {
@@ -156,6 +153,46 @@ export default {
         }
       }
       return adultSize;
+    },
+    hotelItem: {
+      get() {
+        return this.$store.getters.getHotelName;
+      },
+      set(value) {
+        this.$store.commit("setHotelName", value);
+      },
+    },
+    checkIn: {
+      get() {
+        return this.$store.getters.getCheckIn;
+      },
+      set(value) {
+        this.$store.commit("setCheckIn", value);
+      },
+    },
+    checkOut: {
+      get() {
+        return this.$store.getters.getCheckOut;
+      },
+      set(value) {
+        this.$store.commit("setCheckOut", value);
+      },
+    },
+    adultCount: {
+      get() {
+        return this.$store.getters.getAdultNumber;
+      },
+      set(value) {
+        this.$store.commit("setAdultNumber", value);
+      },
+    },
+    childCount: {
+      get() {
+        return this.$store.getters.getChildNumber;
+      },
+      set(value) {
+        this.$store.commit("setChildNumber", value);
+      },
     },
   },
   methods: {

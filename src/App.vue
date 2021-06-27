@@ -1,10 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="indigo"
-    >
-      <Header/>
+    <v-app-bar app color="indigo">
+      <Header />
     </v-app-bar>
 
     <v-main tag="main" class="mt-15">
@@ -21,15 +18,16 @@
               ref="wizard"
               error-color="red"
             >
-              <tab-content
-                v-for="tab in tabs"
-                :key="tab.id"
-                :title="tab.title"
-              >
+              <tab-content v-for="tab in tabs" :key="tab.id" :title="tab.title">
                 <component
-                :is="(selectedComponent = tab.component)"
+                  :is="(selectedComponent = tab.component)"
                 ></component>
               </tab-content>
+              <v-btn color="primary" slot="prev">Back</v-btn>
+              <v-btn color="primary" slot="next">Next</v-btn>
+
+              <v-btn color="primary" slot="finish">Finish</v-btn>
+              <transition mode="out-in"></transition>
             </form-wizard>
           </v-card>
         </v-col>
@@ -39,23 +37,23 @@
 </template>
 
 <script>
-import Header from './components/Header';
-import Step1 from './components/SelectingHotel/Step1.vue'
-import Step2 from './components/SelectingHotel/Step2.vue'
-import Step3 from './components/SelectingHotel/Step3.vue'
+import Header from "./components/Header";
+import Step1 from "./components/SelectingHotel/Step1.vue";
+import Step2 from "./components/SelectingHotel/Step2.vue";
+import Step3 from "./components/SelectingHotel/Step3.vue";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Header,
     Step1,
     Step2,
-    Step3
+    Step3,
   },
 
-  data () {
-    return{
+  data() {
+    return {
       selectedComponent: "Step1",
       tabs: [
         {
@@ -79,7 +77,7 @@ export default {
           component: "Step3",
         },
       ],
-    }
-  }
+    };
+  },
 };
 </script>
