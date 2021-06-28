@@ -9,6 +9,7 @@
         <v-col md="12" lg="8" xl="8" offset-lg="2" offset-xl="2">
           <v-card class="mx-auto" max-height="50" flat tile>
             <form-wizard
+              @on-complete="onComplete"
               shape="circle"
               class="blue lighten-4 wizard"
               color="#1565C0"
@@ -42,6 +43,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "./components/Header";
 import Step1 from "./components/SelectingHotel/Step1.vue";
 import Step2 from "./components/SelectingHotel/Step2.vue";
@@ -114,6 +116,30 @@ export default {
           reject();
         }
       });
+    },
+    onComplete() {
+      axios
+        .post(
+          "https://5f6d939160cf97001641b049.mockapi.io/tkn/hotel-bookings",
+          {
+            hotel_id: "1",
+            start_date: "",
+            end_date: "",
+            adult: "",
+            child: "",
+            room_type: "",
+            room_scnic: "",
+            price: "",
+            coupon_code: "CODE100",
+            card_name: "",
+            card_date_month: "",
+            card_date_year: "",
+            card_cvv: "",
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        });
     },
   },
 };

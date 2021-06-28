@@ -16,16 +16,19 @@ export default new Vuex.Store({
     child_number: "0",
     totalHotelPrice: "",
     pickedRoomType: "",
-    pickedRoomScenic: ""
+    pickedRoomScenic: "",
+    customerName: "",
+    cardNumber: "",
+    cardMonth: "",
+    cardYear: "",
+    cardCVV: ""
   },
   mutations: {
     setHotelList(state, payload) {
       state.hotelList = payload;
-      console.log(payload);
     },
     setHotelDetails(state, payload) {
       state.hotelDetails = payload;
-      console.log("Otel Ayrıntıları", payload);
     },
     setHotelName(state, payload) {
       state.hotelName = payload;
@@ -44,15 +47,30 @@ export default new Vuex.Store({
     },
     setSelectHotelDetails(state, payload) {
       state.selectedHotelDetails = payload;
-      console.log("vuex seçilen obje", payload);
     },
     setPickedRoomType(state, payload) {
       state.pickedRoomType = payload;
-      console.log("oda tipi", payload);
     },
     setPickedRoomScenic(state, payload) {
       state.pickedRoomType = payload;
-      console.log("manzara tipi", payload);
+    },
+    setCustomerName(state, payload) {
+      state.customerName = payload;
+    },
+    setCardNumber(state, payload) {
+      state.cardNumber = payload;
+    },
+    setCardMonth(state, payload) {
+      state.cardMonth = payload;
+      console.log(payload);
+    },
+    setCardYear(state, payload) {
+      state.cardYear = payload;
+      console.log(payload);
+    },
+    setCardCVV(state, payload) {
+      state.cardCVV = payload;
+      console.log(payload);
     }
   },
   actions: {
@@ -107,6 +125,21 @@ export default new Vuex.Store({
     },
     getPickedRoomScenic(state) {
       return state.pickedRoomType;
+    },
+    getCustomerName(state) {
+      return state.customerName
+    },
+    getCardNumber(state) {
+      return state.cardNumber;
+    },
+    getCardMonth(state) {
+      return state.cardMonth;
+    },
+    getCardYear(state) {
+      return state.cardYear;
+    },
+    getCardCVV(state) {
+      return state.cardCVV;
     }
   }
 

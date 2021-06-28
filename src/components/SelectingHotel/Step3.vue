@@ -76,34 +76,71 @@
 export default {
   data() {
     return {
-      name: "",
       nameRules: [
         (v) => !!v || "Name is required",
         (v) => (v && v.length <= 30) || "Name is required",
       ],
-      cardNumber: "",
       cardNumberRules: [
         (v) => !!v || "Card number is required",
         (v) => (v && v.length <= 16) || "Name is required",
       ],
-      cardMonth: "",
       cardMonthRules: [
         (v) => !!v || "Expire month is required",
         (v) => (v && v <= 12) || "Expire month must be less than 12",
       ],
-      cardYear: "",
       cardYearRules: [
         (v) => !!v || "Expire year is required",
         (v) =>
           (v && v >= 2021 && v <= 2040) ||
           "Expire year must be 2021 between 2040",
       ],
-      cardCVV: "",
       cardCVVRules: [
         (v) => !!v || "Expire CVV is required",
         (v) => (v && v.length >= 3) || "CVV must be 3 character",
       ],
     };
+  },
+  computed: {
+    name: {
+      get() {
+        return this.$store.getters.getCustomerName;
+      },
+      set(value) {
+        this.$store.commit("setCustomerName", value);
+      },
+    },
+    cardNumber: {
+      get() {
+        return this.$store.getters.getCardNumber;
+      },
+      set(value) {
+        this.$store.commit("setCardNumber", value);
+      },
+    },
+    cardMonth: {
+      get() {
+        return this.$store.getters.getCardMonth;
+      },
+      set(value) {
+        this.$store.commit("setCardMonth", value);
+      },
+    },
+    cardYear: {
+      get() {
+        return this.$store.getters.getCardYear;
+      },
+      set(value) {
+        this.$store.commit("setCardYear", value);
+      },
+    },
+    cardCVV: {
+      get() {
+        return this.$store.getters.getCardCVV;
+      },
+      set(value) {
+        this.$store.commit("setCardCVV", value);
+      },
+    },
   },
 };
 </script>
