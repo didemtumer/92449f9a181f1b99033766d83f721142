@@ -159,6 +159,7 @@ export default {
       console.log("roomInfo", roomInfo);
       let hotelprice =
         roomInfo[0].price * this.dateDifference * this.getAdultNumber;
+      this.$store.commit("setPrice", hotelprice);
       return hotelprice;
     },
   },

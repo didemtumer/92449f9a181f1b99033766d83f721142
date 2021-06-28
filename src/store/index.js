@@ -17,6 +17,7 @@ export default new Vuex.Store({
     totalHotelPrice: "",
     pickedRoomType: "",
     pickedRoomScenic: "",
+    price: "",
     customerName: "",
     cardNumber: "",
     cardMonth: "",
@@ -47,13 +48,16 @@ export default new Vuex.Store({
     },
     setSelectHotelDetails(state, payload) {
       state.selectedHotelDetails = payload;
+      console.log("hoteldetail", payload);
     },
     setPickedRoomType(state, payload) {
       state.pickedRoomType = payload;
     },
     setPickedRoomScenic(state, payload) {
       state.pickedRoomScenic = payload;
-      console.log(payload, state.pickedRoomType);
+    },
+    setPrice(state, payload) {
+      state.price = payload;
     },
     setCustomerName(state, payload) {
       state.customerName = payload;
@@ -63,21 +67,17 @@ export default new Vuex.Store({
     },
     setCardMonth(state, payload) {
       state.cardMonth = payload;
-      console.log(payload);
     },
     setCardYear(state, payload) {
       state.cardYear = payload;
-      console.log(payload);
     },
     setCardCVV(state, payload) {
       state.cardCVV = payload;
-      console.log(payload);
     }
   },
   actions: {
     loadHotelList({ commit }) {
       axios.get(`https://5f6d939160cf97001641b049.mockapi.io/tkn/hotels`).then((response) => {
-        console.log(response.data);
         let hotelList = response.data;
         commit("setHotelList", hotelList);
       })
@@ -126,6 +126,9 @@ export default new Vuex.Store({
     },
     getPickedRoomScenic(state) {
       return state.pickedRoomScenic;
+    },
+    getPrice(state) {
+      return state.price;
     },
     getCustomerName(state) {
       return state.customerName
