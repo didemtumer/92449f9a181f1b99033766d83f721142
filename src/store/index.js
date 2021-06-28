@@ -52,7 +52,8 @@ export default new Vuex.Store({
       state.pickedRoomType = payload;
     },
     setPickedRoomScenic(state, payload) {
-      state.pickedRoomType = payload;
+      state.pickedRoomScenic = payload;
+      console.log(payload, state.pickedRoomType);
     },
     setCustomerName(state, payload) {
       state.customerName = payload;
@@ -124,7 +125,7 @@ export default new Vuex.Store({
       return state.pickedRoomType;
     },
     getPickedRoomScenic(state) {
-      return state.pickedRoomType;
+      return state.pickedRoomScenic;
     },
     getCustomerName(state) {
       return state.customerName

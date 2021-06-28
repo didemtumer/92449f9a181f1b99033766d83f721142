@@ -69,10 +69,10 @@
           v-for="roomScenic in roomScenics"
           :key="roomScenic.id"
         >
-          <label class="radio-img2">
+          <label class="radio-img">
             <input
               type="radio"
-              name="layout"
+              name="layout2"
               :value="roomScenic.title"
               v-model="pickedRoomScenic"
               required
