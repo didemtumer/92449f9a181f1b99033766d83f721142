@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify'
 import './scss/main.scss'
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
 Vue.use(VueFormWizard)
 
 Vue.config.productionTip = false
