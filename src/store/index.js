@@ -13,7 +13,10 @@ export default new Vuex.Store({
     checkIn: new Date().toISOString().substr(0, 10),
     checkOut: new Date().toISOString().substr(0, 10),
     adult_number: "",
-    child_number: "0"
+    child_number: "0",
+    totalHotelPrice: "",
+    pickedRoomType: "",
+    pickedRoomScenic: ""
   },
   mutations: {
     setHotelList(state, payload) {
@@ -42,6 +45,14 @@ export default new Vuex.Store({
     setSelectHotelDetails(state, payload) {
       state.selectedHotelDetails = payload;
       console.log("vuex seçilen obje", payload);
+    },
+    setPickedRoomType(state, payload) {
+      state.pickedRoomType = payload;
+      console.log("oda tipi", payload);
+    },
+    setPickedRoomScenic(state, payload) {
+      state.pickedRoomType = payload;
+      console.log("manzara tipi", payload);
     }
   },
   actions: {
@@ -90,8 +101,13 @@ export default new Vuex.Store({
     },
     getSelectedHotelDetails(state) {
       return state.selectedHotelDetails;
+    },
+    getPickedRoomType(state) {
+      return state.pickedRoomType;
+    },
+    getPickedRoomScenic(state) {
+      return state.pickedRoomType;
     }
-
   }
 
 })

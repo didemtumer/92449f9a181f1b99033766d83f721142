@@ -33,6 +33,7 @@
               name="layout"
               :value="roomtype.title"
               v-model="pickedRoomType"
+              required
             />
             <v-card class="mx-auto image" max-width="344">
               <v-card-title>
@@ -49,9 +50,7 @@
                   {{ dateDifference }} gün
                 </v-card-text>
                 <v-card-text class="card-info">
-                  {{
-                    roomPrice(roomtype.id) * dateDifference * getAdultNumber
-                  }}TL
+                  {{ roomPrice(roomtype.id) }}TL
                 </v-card-text>
                 <v-spacer></v-spacer>
                 <v-card-subtitle> {{ getAdultNumber }} Adults </v-card-subtitle>
@@ -70,12 +69,13 @@
           v-for="roomScenic in roomScenics"
           :key="roomScenic.id"
         >
-          <label class="radio-img">
+          <label class="radio-img2">
             <input
               type="radio"
-              name="layout2"
+              name="layout"
               :value="roomScenic.title"
               v-model="pickedRoomScenic"
+              required
             />
             <v-card class="mx-auto image" max-width="344">
               <v-card-title>
@@ -108,8 +108,6 @@ export default {
   data() {
     return {
       radioGroup: 1,
-      pickedRoomType: "",
-      pickedRoomScenic: "",
     };
   },
   computed: {
@@ -135,6 +133,22 @@ export default {
       let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       return diffDays;
     },
+    pickedRoomType: {
+      get() {
+        return this.$store.getters.getPickedRoomType;
+      },
+      set(value) {
+        this.$store.commit("setPickedRoomType", value);
+      },
+    },
+    pickedRoomScenic: {
+      get() {
+        return this.$store.getters.getPickedRoomScenic;
+      },
+      set(value) {
+        this.$store.commit("setPickedRoomScenic", value);
+      },
+    },
   },
   methods: {
     roomPrice(id) {
@@ -143,7 +157,8 @@ export default {
         item.id === id ? item.price : null
       );
       console.log("roomInfo", roomInfo);
-      let hotelprice = roomInfo[0].price;
+      let hotelprice =
+        roomInfo[0].price * this.dateDifference * this.getAdultNumber;
       return hotelprice;
     },
   },

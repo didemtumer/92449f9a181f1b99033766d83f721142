@@ -18,7 +18,12 @@
               ref="wizard"
               error-color="red"
             >
-              <tab-content v-for="tab in tabs" :key="tab.id" :title="tab.title">
+              <tab-content
+                v-for="tab in tabs"
+                :key="tab.id"
+                :title="tab.title"
+                :before-change="tab.beforeChange"
+              >
                 <component
                   :is="(selectedComponent = tab.component)"
                 ></component>
@@ -41,7 +46,7 @@ import Header from "./components/Header";
 import Step1 from "./components/SelectingHotel/Step1.vue";
 import Step2 from "./components/SelectingHotel/Step2.vue";
 import Step3 from "./components/SelectingHotel/Step3.vue";
-
+import { mapGetters } from "vuex";
 export default {
   name: "App",
 
@@ -78,6 +83,38 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    ...mapGetters([
+      "getAdultNumber",
+      "getHotelName",
+      "getPickedRoomType",
+      "getPickedRoomScenic",
+    ]),
+  },
+  methods: {
+    validateStep1: function() {
+      return new Promise((resolve, reject) => {
+        if (this.getHotelName && this.getAdultNumber) {
+          /*    console.log("Color: ", this.getColorSelected); */
+          resolve(true);
+        } else {
+          this.dialog = true;
+          reject();
+        }
+      });
+    },
+    validateStep2: function() {
+      return new Promise((resolve, reject) => {
+        if (this.getPickedRoomType && this.getPickedRoomScenic) {
+          /*    console.log("Color: ", this.getColorSelected); */
+          resolve(true);
+        } else {
+          this.dialog = true;
+          reject();
+        }
+      });
+    },
   },
 };
 </script>
