@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-app-bar app color="indigo">
-      <Header />
+      <Header @newBookingPage="newBookingPage" />
     </v-app-bar>
 
     <v-main tag="main" class="mt-15">
@@ -150,6 +150,10 @@ export default {
           console.log(response);
           this.$router.push("/details");
         });
+    },
+    newBookingPage() {
+      console.log(this.$route.name);
+      this.$router.go();
     },
   },
 };

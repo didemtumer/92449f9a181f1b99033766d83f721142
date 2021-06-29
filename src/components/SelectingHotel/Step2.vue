@@ -6,7 +6,7 @@
           <div class="hotel-details">
             <h1 hotel-details__header>
               {{ getHotelName }}
-              <span>{{ getSelectedHotelDetails ? selectedCity : "-" }}</span>
+              <span>{{ selectedCity }}</span>
             </h1>
             <p>
               <strong>Check-in :</strong> <span>{{ getCheckIn }}</span>
@@ -151,7 +151,10 @@ export default {
       },
     },
     selectedCity() {
-      return this.getSelectedHotelDetails[0].city;
+      console.log(this.getSelectedHotelDetails[0].city);
+      return this.getSelectedHotelDetails
+        ? this.getSelectedHotelDetails[0].city
+        : "-";
     },
   },
   methods: {

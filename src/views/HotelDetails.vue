@@ -29,9 +29,7 @@
       </v-row>
     </v-main>
     <v-main class="mx-15">
-      <h1>
-        {{ getHotelName }}/ {{ getSelectedHotelDetails ? selectedCity : "-" }}
-      </h1>
+      <h1>{{ getHotelName }}/ {{ selectedCity }}</h1>
       <v-row class="booking-info">
         <v-col cols="6">
           <v-card>
