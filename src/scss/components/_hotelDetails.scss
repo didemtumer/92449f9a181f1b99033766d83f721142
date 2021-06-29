@@ -1,0 +1,20 @@
+.hotel-details-container {
+  height: 13rem;
+  .detail-card {
+    position: absolute;
+    width: 40rem;
+    height: 10rem;
+    &__icon {
+      position: relative;
+      top: 1rem;
+      left: 45%;
+    }
+    &__title {
+      text-align: center;
+      font-size: 1rem;
+      color: black;
+      font-weight: 400;
+      padding-left: 11rem;
+    }
+  }
+}

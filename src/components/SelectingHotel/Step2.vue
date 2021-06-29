@@ -5,7 +5,8 @@
         <v-col cols="12">
           <div class="hotel-details">
             <h1 hotel-details__header>
-              {{ getHotelName }} <span>Ankara</span>
+              {{ getHotelName }}
+              <span>{{ getSelectedHotelDetails ? selectedCity : "-" }}</span>
             </h1>
             <p>
               <strong>Check-in :</strong> <span>{{ getCheckIn }}</span>
@@ -148,6 +149,9 @@ export default {
       set(value) {
         this.$store.commit("setPickedRoomScenic", value);
       },
+    },
+    selectedCity() {
+      return this.getSelectedHotelDetails[0].city;
     },
   },
   methods: {

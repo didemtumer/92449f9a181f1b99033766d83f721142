@@ -1,0 +1,25 @@
+.image {
+  opacity: 0.8;
+  width: 200px;
+  height: auto;
+  background-position: center center;
+  display: inline-block;
+  margin: 10px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.radio-img {
+  > input {
+    display: none;
+  }
+  > .image {
+    cursor: pointer;
+  }
+  > input:checked + .image {
+    outline: 3px solid blue;
+    outline-offset: 0.8rem;
+  }
+}

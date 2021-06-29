@@ -48,7 +48,6 @@ export default new Vuex.Store({
     },
     setSelectHotelDetails(state, payload) {
       state.selectedHotelDetails = payload;
-      console.log("hoteldetail", payload);
     },
     setPickedRoomType(state, payload) {
       state.pickedRoomType = payload;
@@ -87,7 +86,6 @@ export default new Vuex.Store({
     },
     loadHotelDetails({ commit }) {
       axios.get(`https://5f6d939160cf97001641b049.mockapi.io/tkn/hotel-details`).then((response) => {
-        console.log("Otel Detayları", response.data);
         let hotelDetails = response.data;
         commit("setHotelDetails", hotelDetails);
       })
