@@ -65,21 +65,21 @@ export default {
       tabs: [
         {
           id: "1",
-          title: "Otel ve Tarih Seçimi",
+          title: "Choose Hotel and Date",
           icon: "ti-user",
           component: "Step1",
           beforeChange: this.validateStep1,
         },
         {
           id: "2",
-          title: "Oda Tipi ve Manzara Seçimi",
+          title: "Room Type and Scenis Type",
           icon: "ti-settings",
           component: "Step2",
           beforeChange: this.validateStep2,
         },
         {
           id: "3",
-          title: "Önizleme ve Ödeme İşlemleri",
+          title: "Payment",
           icon: "ti-location-pin",
           component: "Step3",
         },

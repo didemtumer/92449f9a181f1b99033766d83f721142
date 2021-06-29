@@ -7,7 +7,7 @@
             v-model="hotelItem"
             dense
             solo
-            label="Rezervasyon Yapmak İstediğiniz Oteli Seçiniz"
+            label="Choose Your Hotel"
             :items="hotelName"
           >
             <v-icon>mdi-home-search-outline</v-icon>
@@ -73,7 +73,7 @@
         </v-col>
         <v-col cols="12" sm="6" md="3" class="mt-4">
           <v-select
-            label="Yetişkin Sayısı"
+            label="Adults"
             v-model="adultCount"
             :items="dynamicAdultArray"
             :rules="[(v) => !!v || 'Please select adult size']"
@@ -83,7 +83,7 @@
         </v-col>
         <v-col cols="12" sm="6" md="3" class="mt-4">
           <v-select
-            label="Çocuk Sayısı"
+            label="Children"
             v-model="childCount"
             :items="children"
             :disabled="hotelItem ? disabledChildStatusInput : true"
@@ -91,7 +91,7 @@
           >
           </v-select>
           <p v-if="hotelItem ? !childStatus : false">
-            Çocuk Ziyaretçi Kabul Edilmiyor!
+            We don'accept children!
           </p>
         </v-col>
       </v-row>

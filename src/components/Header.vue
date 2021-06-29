@@ -2,8 +2,8 @@
   <v-container class="header">
     <v-toolbar flat color="indigo">
       <v-toolbar-title>
-        <span class="header__title">Otel</span>
-        <span class="header__subtitle">Rezervasyon Sistemi</span>
+        <span class="header__title">Hote</span>
+        <span class="header__subtitle">Reservasion Siystem</span>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -12,7 +12,7 @@
           <v-icon left color="indigo">
             mdi-pencil
           </v-icon>
-          Yeni Rezervasyon Yap
+          New Booking
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
